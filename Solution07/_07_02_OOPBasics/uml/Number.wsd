@@ -1,0 +1,14 @@
+@startuml
+title Number
+class Number
+{
+    - _singleNumber:int
+    - _description:String
+    + SetCount(value:int):int
+    + GetCount():int
+    + SetSingleNumber(value:int)
+    + GetSingleNumber():int
+    + Number()
+    + Number(singleNumber:int, description:String, count:int)
+}
+@enduml

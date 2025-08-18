@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\kurumlar\\BTK\\2025-Programlama-II\\btk-akademi-programlama-II\\Solution07\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13E5BCED-7BD7-457F-B269-1BB446556431}|_07_02_OOPBasics\\_07_02_OOPBasics.csproj|f:\\kurumlar\\btk\\2025-programlama-ii\\btk-akademi-programlama-ii\\solution07\\_07_02_oopbasics\\numberclassdiagram.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
+      "RelativeMoniker": "D:0:0:{13E5BCED-7BD7-457F-B269-1BB446556431}|_07_02_OOPBasics\\_07_02_OOPBasics.csproj|solutionrelative:_07_02_oopbasics\\numberclassdiagram.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NumberClassDiagram.cd",
+              "DocumentMoniker": "F:\\kurumlar\\BTK\\2025-Programlama-II\\btk-akademi-programlama-II\\Solution07\\_07_02_OOPBasics\\NumberClassDiagram.cd",
+              "RelativeDocumentMoniker": "_07_02_OOPBasics\\NumberClassDiagram.cd",
+              "ToolTip": "F:\\kurumlar\\BTK\\2025-Programlama-II\\btk-akademi-programlama-II\\Solution07\\_07_02_OOPBasics\\NumberClassDiagram.cd",
+              "RelativeToolTip": "_07_02_OOPBasics\\NumberClassDiagram.cd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
+              "WhenOpened": "2025-08-18T19:18:36.69Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
