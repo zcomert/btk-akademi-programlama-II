@@ -1,0 +1,15 @@
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\bin\Debug\net9.0\_08_03_VirtualOverride.exe
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\bin\Debug\net9.0\_08_03_VirtualOverride.deps.json
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\bin\Debug\net9.0\_08_03_VirtualOverride.runtimeconfig.json
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\bin\Debug\net9.0\_08_03_VirtualOverride.dll
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\bin\Debug\net9.0\_08_03_VirtualOverride.pdb
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.GeneratedMSBuildEditorConfig.editorconfig
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.AssemblyInfoInputs.cache
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.AssemblyInfo.cs
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.csproj.CoreCompileInputs.cache
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.sourcelink.json
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.dll
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\refint\_08_03_VirtualOverride.dll
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.pdb
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\_08_03_VirtualOverride.genruntimeconfig.cache
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_03_VirtualOverride\obj\Debug\net9.0\ref\_08_03_VirtualOverride.dll

@@ -1,0 +1,42 @@
+@startuml RechargeableDevices
+title Rechargeable Devices Example
+
+package Contracts{
+
+    interface IRechargeable {
+        +BatteryLevel : int
+        +Recharge(amount:int) : void
+    }
+}
+
+package Models
+{
+
+    class Phone {
+        +Model : string
+        -batteryLevel : int
+        +Phone(model:string, initialBattery:int)
+        +BatteryLevel : int
+        +Recharge(amount:int) : void
+    }
+    class Laptop {
+        +Model : string
+        -batteryLevel : int
+        +Laptop(model:string, initialBattery:int)
+        +BatteryLevel : int
+        +Recharge(amount:int) : void
+    }
+}
+
+
+class Program {
+    +Main() : void
+}
+
+Phone .up-|> IRechargeable : <<implements>>
+Laptop .up-|> IRechargeable : <<implements>>
+
+Program --> IRechargeable : uses
+
+hide empty members
+@enduml

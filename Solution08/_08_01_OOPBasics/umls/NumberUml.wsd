@@ -1,0 +1,25 @@
+@startuml
+title Number Class Model
+
+class Number {
+    -_singleNumber : int
+    -_innerArray : int[]
+    -_description : String
+    --
+    +Number()
+    +Number(singleNumber : int, description : string, count : int = -1)
+    +Number(arr : int[])
+    --
+    +SingleNumber : int        
+    +Description : String      
+    +Count : int               
+    +Min : int                 
+    +Max : int                 
+    --
+    -FindMin() : int
+    -FindMax() : int
+    +Find(key : int) : int    
+}
+
+hide empty members
+@enduml

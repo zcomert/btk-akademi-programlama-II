@@ -1,0 +1,15 @@
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\bin\Debug\net9.0\_08_01_OOPBasics.exe
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\bin\Debug\net9.0\_08_01_OOPBasics.deps.json
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\bin\Debug\net9.0\_08_01_OOPBasics.runtimeconfig.json
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\bin\Debug\net9.0\_08_01_OOPBasics.dll
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\bin\Debug\net9.0\_08_01_OOPBasics.pdb
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.GeneratedMSBuildEditorConfig.editorconfig
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.AssemblyInfoInputs.cache
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.AssemblyInfo.cs
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.csproj.CoreCompileInputs.cache
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.sourcelink.json
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.dll
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\refint\_08_01_OOPBasics.dll
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.pdb
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\_08_01_OOPBasics.genruntimeconfig.cache
+F:\kurumlar\BTK\2025-Programlama-II\btk-akademi-programlama-II\Solution08\_08_01_OOPBasics\obj\Debug\net9.0\ref\_08_01_OOPBasics.dll

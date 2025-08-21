@@ -1,0 +1,31 @@
+@startuml
+title Docs - Document Hiyerarşisi (Paketli)
+
+package "Docs" {
+  class Document {
+    +Title : String
+    --
+    +Document(title : String)
+    +Print() : void   ' virtual
+  }
+}
+
+package "Docs.Words" {
+  class WordDocument {
+    +WordDocument(title : String)
+    +Print() : void   ' override
+  }
+}
+
+package "Docs.PDF" {
+  class PdfDocument {
+    +PdfDocument(title : String)
+    +Print() : void   ' override
+  }
+}
+
+WordDocument -u-|> Document : <<extends>>
+PdfDocument  -u-|> Document : <<extends>>
+
+hide empty members
+@enduml
