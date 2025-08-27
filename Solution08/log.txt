@@ -1,3 +1,0 @@
-Başlangıç log kaydı19.08.2025 22:08:11 : Kullanıcı sisteme giriş yaptı.
-19.08.2025 22:08:11 : Veri güncelleme işlemi gerçekleştirildi.
-Kullanıcı giriş yaptı.
