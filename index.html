@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>BTK Akademi - Programlama II — C# Eğitim Tanıtımı</title>
+  <style>
+    :root {
+      /* Türkçe Açıklama: Karanlık tema (GitHub esintili) renk değişkenleri */
+      --bg: #0d1117;
+      --bg-soft: #161b22;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --brand: #238636;
+      --accent: #2f81f7;
+      --border: #30363d;
+      --card: #0d1117;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .light {
+      /* Türkçe Açıklama: Açık tema için renk değişkenleri */
+      --bg: #ffffff;
+      --bg-soft: #f6f8fa;
+      --text: #24292f;
+      --muted: #57606a;
+      --brand: #2da44e;
+      --accent: #0969da;
+      --border: #d0d7de;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(140,149,159,.15);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, Ubuntu, Cantarell, "Noto Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* ===== Üst Menü ===== */
+    header { position: sticky; top: 0; z-index: 100; background: var(--bg-soft); border-bottom: 1px solid var(--border); backdrop-filter: saturate(180%) blur(6px); }
+    .nav { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand .logo { width: 28px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, var(--accent), var(--brand)); box-shadow: var(--shadow); }
+    .brand span { letter-spacing: .2px; }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a { padding: 8px 10px; border-radius: 8px; color: var(--text); border: 1px solid transparent; }
+    .nav-links a:hover { background: rgba(110, 118, 129, 0.15); }
+    .nav-links a.active { background: rgba(110, 118, 129, 0.25); border-color: var(--border); }
+
+    .controls { display: flex; align-items: center; gap: 8px; }
+    .control-btn { background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; cursor: pointer; }
+    .control-btn:hover { filter: brightness(110%); }
+
+    .mobile-toggle { display: none; }
+
+    /* ===== Hero ===== */
+    .hero { background: linear-gradient(180deg, rgba(47,129,247,.12), transparent); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+    .hero .container { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; }
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); margin: 8px 0 6px; }
+    .subtitle { color: var(--muted); font-size: clamp(14px, 2vw, 18px); }
+    .cta-row { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .button { background: var(--brand); color: #fff; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; font-weight: 600; box-shadow: var(--shadow); }
+    .button.secondary { background: transparent; color: var(--text); }
+
+    /* ===== Genel Grid ve Kartlar ===== */
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(12, 1fr); }
+    .card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: var(--shadow); }
+    section { scroll-margin-top: 88px; }
+    .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .badge { font-size: 12px; color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 999px; }
+
+    /* ===== Bölüm Düzeni ===== */
+    #about .card { grid-column: span 12; }
+    #about .side { grid-column: span 12; }
+    #content .card { grid-column: span 12; }
+    #content .side { grid-column: span 12; }
+
+    @media (min-width: 900px) {
+      #about .card { grid-column: span 8; }
+      #about .side { grid-column: span 4; position: sticky; top: 96px; align-self: start; }
+      #content .card { grid-column: span 8; }
+      #content .side { grid-column: span 4; position: sticky; top: 96px; align-self: start; }
+    }
+
+    /* ===== İçerik ve Arama ===== */
+    .search { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); color: var(--text); }
+    details { border: 1px solid var(--border); background: var(--card); border-radius: 10px; padding: 10px 12px; }
+    details + details { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 600; }
+    ul.topic-list { margin: 8px 0 0 0; padding-left: 18px; }
+
+    /* ===== Eğitmen ===== */
+    .instructor { display: flex; gap: 16px; align-items: flex-start; }
+    .avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--brand)); box-shadow: var(--shadow); border: 2px solid var(--border); }
+
+    /* ===== Altbilgi ===== */
+    footer { border-top: 1px solid var(--border); color: var(--muted); }
+
+    /* ===== Mobil ===== */
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: inline-flex; }
+      .hero .container { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Mobil Panel ===== */
+    .mobile-panel { display: none; position: absolute; right: 16px; top: 56px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 8px; box-shadow: var(--shadow); }
+    .mobile-panel a { display: block; padding: 8px 10px; border-radius: 8px; color: var(--text); }
+    .mobile-panel a:hover { background: rgba(110, 118, 129, 0.15); }
+    .mobile-panel.open { display: block; }
+  </style>
+</head>
+<body>
+  <!-- Türkçe Açıklama: Üst menü (GitHub benzeri) -->
+  <header>
+    <nav class="nav" aria-label="Üst Menü">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>BTK Akademi - Programlama II · C#</span>
+      </div>
+
+      <div class="nav-links" id="desktopNav">
+        <a href="#about">Eğitim Hakkında</a>
+        <a href="#content">İçerik</a>
+        <a href="#instructor">Eğitmen</a>
+        <a href="#requirements">Gereksinimler</a>
+      </div>
+
+      <div class="controls">
+        <button id="themeToggle" class="control-btn" aria-label="Tema Değiştir">🌙</button>
+        <button id="menuToggle" class="control-btn mobile-toggle" aria-label="Menüyü Aç/Kapat">☰</button>
+        <div id="mobilePanel" class="mobile-panel" role="menu" aria-label="Gezinme Menüsü">
+          <a href="#about" role="menuitem">Eğitim Hakkında</a>
+          <a href="#content" role="menuitem">İçerik</a>
+          <a href="#instructor" role="menuitem">Eğitmen</a>
+          <a href="#requirements" role="menuitem">Gereksinimler</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Türkçe Açıklama: Kahraman alanı (hero) -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <div class="badge">Önlisans Düzeyi · Temel→Orta</div>
+        <h1>C# ile Programlama & OOP · Programlama II</h1>
+        <p class="subtitle">Temel yapılardan nesne yönelimli kavramlara, koleksiyonlardan hata yönetimine uzanan, uygulamalı bir yolculuk. Modern müfredat, örnek odaklı anlatım ve temiz kod kültürü.</p>
+        <div class="cta-row">
+          <a class="button" href="#content">Müfredatı İncele</a>
+          <a class="button secondary" href="#requirements">Ortamı Hazırla</a>
+        </div>
+      </div>
+      <div class="card">
+        <strong>Neden bu eğitim?</strong>
+        <ul>
+          <li>C# ve OOP temelleri ile modüler, sürdürülebilir yazılım geliştirme becerisi kazanma.</li>
+          <li>Gerçek dünya problemlerine algoritmik çözümler geliştirme.</li>
+          <li>Koleksiyonlar, arayüzler, kalıtım ve hata yönetimi gibi pratik başlıklar.</li>
+          <li>Kod stili: <em>İngilizce isimler</em> + <em>Türkçe açıklamalar</em>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- ===== Eğitim Hakkında ===== -->
+    <section id="about" class="grid">
+      <div class="card">
+        <div class="section-title">
+          <h2>Eğitim Hakkında</h2>
+          <span class="badge">Genel Bakış</span>
+        </div>
+        <p>Bu ders, C# programlama dili ile temel ve orta seviye programlama konularını; nesne yönelimli programlama (OOP) kavramlarını teori ve uygulama ile bütüncül bir yaklaşımla öğretmeyi hedefler. Öğrenciler; veri tipleri, akış kontrolü, koleksiyonlar, arayüzler, kalıtım, hata yönetimi ve UML diyagramlarını kapsayan bir müfredatla ilerler.</p>
+        <p>Her bölümde kazanılan bilgi, sonraki bölümlerde <strong>tekrarlı ve bütünleşik</strong> biçimde kullanılır. Kodlama sırasında <em>değişken/üye/işlev adları İngilizce</em>, <em>açıklama satırları Türkçe</em> yazılır.</p>
+      </div>
+      <aside class="side card">
+        <strong>Öne Çıkanlar</strong>
+        <ul>
+          <li>Seviye: Temel–Orta (Önlisans)</li>
+          <li>Süre: 15 Hafta (modül bazlı)</li>
+          <li>Dil & Platform: C# / .NET</li>
+          <li>Yaklaşım: Uygulama odaklı + UML</li>
+        </ul>
+        <strong>Kazanımlar</strong>
+        <ul>
+          <li>C# dilini etkin kullanma</li>
+          <li>Temel yapılar ve OOP prensipleri</li>
+          <li>Arayüz, kalıtım, koleksiyonlar, hata yönetimi</li>
+          <li>Modüler ve sürdürülebilir geliştirme</li>
+          <li>Gerçek dünya problemleri için çözüm üretme</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ===== İçerik ===== -->
+    <section id="content" class="grid">
+      <div class="card">
+        <div class="section-title">
+          <h2>İçerik</h2>
+          <span class="badge">Müfredat</span>
+        </div>
+        <input id="searchCurriculum" class="search" type="search" placeholder="Müfredatta ara (örn. 'Koleksiyon', 'Interface')  ·  Kısayol: /" aria-label="Müfredatta ara" />
+        <div style="height: 10px"></div>
+
+        <!-- Türkçe Açıklama: Modüller - details/summary ile akordeon yapı -->
+        <details>
+          <summary>2. C# Giriş</summary>
+          <ul class="topic-list">
+            <li>2.1 Giriş</li>
+            <li>2.2 C# Genel Bakış</li>
+            <li>2.3 C# Tarihçesi</li>
+            <li>2.4 Uygulama Modelleri</li>
+            <li>2.5 C#’ın Avantajları</li>
+            <li>2.6 İlk Program</li>
+            <li>2.7 Proje Ekleme</li>
+            <li>2.8 Tip Güvenliği</li>
+            <li>2.9 Null ve Nullable</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>3. Programcılığa Giriş</summary>
+          <ul class="topic-list">
+            <li>3.1 Giriş</li>
+            <li>3.2 Algoritmalar ve Akış Şemaları</li>
+            <li>3.3 Değişkenler</li>
+            <li>3.4 Aritmetik Operatörler</li>
+            <li>3.5 Karşılaştırma Operatörleri</li>
+            <li>3.6 Mantıksal Operatörler</li>
+            <li>3.7 Atama Operatörleri</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>4. Veri Tipleri</summary>
+          <ul class="topic-list">
+            <li>4.1 Giriş</li>
+            <li>4.2 Yerleşik Veri Türleri</li>
+            <li>4.3 Yerleşik Veri Türü Uygulaması</li>
+            <li>4.4 İşaretli ve İşaretsiz Veri Türleri</li>
+            <li>4.5 İşaretli ve İşaretsiz Veri Türleri Uygulaması</li>
+            <li>4.6 Değer ve Referans Tipler</li>
+            <li>4.7 Değer ve Referans Tipler Uygulaması</li>
+            <li>4.8 Kutulama ve Kutudan Çıkarma</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>5. Dizi Kavramları ve Döngüler</summary>
+          <ul class="topic-list">
+            <li>5.1 Giriş</li>
+            <li>5.2 Dizi</li>
+            <li>5.3 for Döngüsü</li>
+            <li>5.4 foreach</li>
+            <li>5.5 while Döngüsü</li>
+            <li>5.6 do-while Döngüsü</li>
+            <li>5.7 Proje Oluşturma</li>
+            <li>5.8 Ortalama Hesabı</li>
+            <li>5.9 Minimum ve Maksimum Notlar</li>
+            <li>5.10 Ortalamanın Üstündeki Not Sayısı</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>6. String Veri Yapısı</summary>
+          <ul class="topic-list">
+            <li>6.1 Giriş</li>
+            <li>6.2 String Veri Türü</li>
+            <li>6.3 String–Char İlişkisi</li>
+            <li>6.4 String Birleştirme</li>
+            <li>6.5 Kaçış İfadeleri ve Verbatim</li>
+            <li>6.6 String Karşılaştırma</li>
+            <li>6.7 String Sıralama</li>
+            <li>6.8 String Formatlama</li>
+            <li>6.9 StringBuilder</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>7. Nesne Yapısı 1</summary>
+          <ul class="topic-list">
+            <li>7.1 Giriş</li>
+            <li>7.2 Programlama Paradigmaları</li>
+            <li>7.3 Prosedürel Programlama Paradigması</li>
+            <li>7.4 Nesne Yönelimli Programlamanın Temelleri</li>
+            <li>7.5 Sınıf Kavramı</li>
+            <li>7.6 Kapsülleme</li>
+            <li>7.7 Sınıf Diyagramı</li>
+            <li>7.8 Soyutlama</li>
+            <li>7.9 Yapıcı Metodun Aşırı Yüklenmesi</li>
+            <li>7.10 UML Diyagramları</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>8. Nesne Yapısı 2</summary>
+          <ul class="topic-list">
+            <li>8.1 Giriş</li>
+            <li>8.2 Bilgi Gizleme</li>
+            <li>8.3 Basit Kalıtım</li>
+            <li>8.4 <code>virtual</code> ve <code>override</code></li>
+            <li>8.5 <code>namespace</code></li>
+            <li>8.6 Hiyerarşik Kalıtım</li>
+            <li>8.7 Hiyerarşik Kalıtım</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>9. Arayüz (interface) Yapısı</summary>
+          <ul class="topic-list">
+            <li>9.1 Giriş</li>
+            <li>9.2 Arayüz Kavramı</li>
+            <li>9.3 Arayüz Tanımlama ve Uygulama</li>
+            <li>9.4 Arayüz Uygulaması</li>
+            <li>9.5 Arayüz ve Davranış İlişkisi</li>
+            <li>9.6 Yerleşik Arayüz Uygulaması</li>
+            <li>9.7 Arayüzlerin Referans Tutması</li>
+            <li>9.8 Çoklu Arayüz Kalıtımı</li>
+            <li>9.9 Interface Karşılaştırma</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>10. Kalıtım ve Abstract Yapı</summary>
+          <ul class="topic-list">
+            <li>10.1 Giriş</li>
+            <li>10.2 Soyut Sınıflar</li>
+            <li>10.3 Soyut Sınıf Tanımı</li>
+            <li>10.4 Soyut Sınıfı Kalıtma</li>
+            <li>10.5 Soyut Sınıfı Kalıtma</li>
+            <li>10.6 Soyut Sınıfın Kullanılması</li>
+            <li>10.7 Soyut Sınıfların Karşılaştırılması</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>11. Erişim Bildirgeç Sistemi ve Koleksiyon Temel Yapısı</summary>
+          <ul class="topic-list">
+            <li>11.1 Giriş</li>
+            <li>11.2 Erişim Belirteçleri</li>
+            <li>11.3 Sınıf Kütüphanesi</li>
+            <li>11.4 Projeler Arası Erişim Belirteçlerinin Kullanımı</li>
+            <li>11.5 Nesnelere Erişim</li>
+            <li>11.6 Koleksiyonlar</li>
+            <li>11.7 Koleksiyonlarda Temel İşlemler</li>
+            <li>11.8 Koleksiyonların Sınıf İçi Kullanımı</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>12. Yapıcı Bloklar, Değer ve Referans Tipler</summary>
+          <ul class="topic-list">
+            <li>12.1 Giriş</li>
+            <li>12.2 Yapıcı Metotlar</li>
+            <li>12.3 Yapıcı Metot Uygulaması</li>
+            <li>12.4 <code>struct</code> ve <code>class</code></li>
+            <li>12.5 <code>struct</code> ve <code>class</code> Uygulaması</li>
+            <li>12.6 <code>static</code></li>
+            <li>12.7 <code>static</code> Sınıf Uygulaması</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>13. Koleksiyonlar</summary>
+          <ul class="topic-list">
+            <li>13.1 Giriş</li>
+            <li>13.2 List Koleksiyonu</li>
+            <li>13.3 ArrayList</li>
+            <li>13.4 Basit List Örneği</li>
+            <li>13.5 List ve Nesne Yaklaşımı</li>
+            <li>13.6 Generic</li>
+            <li>13.7 Generic Uygulama</li>
+            <li>13.8 LinkedList Koleksiyonu</li>
+            <li>13.9 Stack Koleksiyonu</li>
+            <li>13.10 Queue Koleksiyonu</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>14. Koleksiyonlar (2)</summary>
+          <ul class="topic-list">
+            <li>14.1 Giriş</li>
+            <li>14.2 Dictionary Koleksiyonu</li>
+            <li>14.3 Dictionary Uygulaması</li>
+            <li>14.4 SortedList Koleksiyonu</li>
+            <li>14.5 SortedList Uygulaması</li>
+            <li>14.6 SortedList ve Soyutlama</li>
+            <li>14.7 ObservableCollection</li>
+            <li>14.8 ObservableCollection Uygulaması</li>
+            <li>14.9 HashSet</li>
+            <li>14.10 HashSet Genel Bakış</li>
+            <li>14.11 HashSet Uygulaması</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>15. Hata Yönetimi</summary>
+          <ul class="topic-list">
+            <li>15.1 Giriş</li>
+            <li>15.2 Hata Yönetimi</li>
+            <li>15.3 <code>try</code>-<code>catch</code>-<code>finally</code></li>
+            <li>15.4 Hata Mesajları</li>
+            <li>15.5 Hata Sınıfları Hazırlama</li>
+            <li>15.6 Özel Hata Sınıflarını Kullanma</li>
+            <li>15.7 Sınıf İçi Hata Yönetimi</li>
+          </ul>
+        </details>
+      </div>
+
+      <aside class="side card">
+        <strong>İlerleme & Çalışma Tarzı</strong>
+        <ul>
+          <li>Her modül mini proje/uygulama içerir.</li>
+          <li>Temel→Orta seviye için artan zorluk.</li>
+          <li>Okunabilir, test edilebilir kod odaklı.</li>
+        </ul>
+        <strong>İpucu</strong>
+        <p>Müfredatta arama yapabilir, eşleşen başlıkları hızlıca açabilirsiniz. Detaylar filtreye göre otomatik genişler.</p>
+      </aside>
+    </section>
+
+    <!-- ===== Eğitmen ===== -->
+    <section id="instructor" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <div class="section-title">
+          <h2>Eğitmen</h2>
+          <span class="badge">Mentor</span>
+        </div>
+        <div class="instructor">
+          <img class="avatar" src="https://profil.samsun.edu.tr/images/employees/zafer.comert.png" alt=\"Doç. Dr. Zafer CÖMERT\" />
+          <div>
+            <h3 style="margin: 0 0 6px;">Doç. Dr. Zafer CÖMERT</h3>
+            <p>Samsun Üniversitesi, Mühendislik ve Doğa Bilimleri Fakültesi, Yazılım Mühendisliği Bölümü öğretim üyesi. Çalışma alanları arasında bilgisayar görüsü, işaret işleme, yapay zekâ, makine öğrenmesi ve derin öğrenme bulunmaktadır. Kariyerinde uluslararası indeksli yayınlar üretmiş; programlama, algoritmalar, yapay zekâ ve web teknolojileri dersleri vermiş; kamu kurumları ve Ar‑Ge şirketlerinde danışmanlık/yöneticilik deneyimleri edinmiştir.</p>
+            <ul>
+              <li>Uzmanlık: Computer Vision, Signal Processing, AI/ML, Deep Learning</li>
+              <li>Kurum: <a href="https://profil.samsun.edu.tr/Academic/About/zcomert" target="_blank" rel="noopener">Samsun Üniversitesi — Akademik Profil</a></li>
+              <li>Bağlantılar: 
+                <a href="https://www.linkedin.com/in/zafer-c%C3%B6mert-51000367/" target="_blank" rel="noopener">LinkedIn</a> · 
+                <a href="https://www.btkakademi.gov.tr/portal/trainer/2250" target="_blank" rel="noopener">BTK Akademi</a> · 
+                <a href="https://www.youtube.com/%40virtual.campus" target="_blank" rel="noopener">YouTube</a> · 
+                <a href="https://github.com/zcomert/btk-akademi-programlama" target="_blank" rel="noopener">GitHub Repo</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Gereksinimler ===== -->
+    <section id="requirements" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <div class="section-title">
+          <h2>Gereksinimler</h2>
+          <span class="badge">Kurulum</span>
+        </div>
+        <ul>
+          <li>Bilgisayar: Windows 10/11 veya macOS</li>
+          <li>Yazılım: .NET 8+ SDK, Visual Studio 2022 veya Visual Studio Code</li>
+          <li>İsteğe bağlı: Git ve bir sürüm kontrol hesabı</li>
+          <li>Zaman: Haftalık 5–7 saat (ders + pratik)</li>
+        </ul>
+        <p><strong>Kurulum Testi (C#):</strong></p>
+        <pre><code>// Türkçe Açıklama: Ortam doğrulama için basit C# kodu
+using System;
+
+class App
+{
+    static void Main()
+    {
+        // Türkçe Açıklama: Konsola bir mesaj yazdırılır
+        Console.WriteLine("Merhaba, Programlama II!");
+    }
+}
+</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" style="padding-top: 24px; padding-bottom: 32px;">
+    <small>© <span id="year"></span> Programlama II — C# Eğitim Tanıtımı</small>
+  </footer>
+
+  <script>
+    // =====================
+    // Türkçe Açıklama: Tema yönetimi (localStorage ile kalıcı)
+    // =====================
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+      // Türkçe Açıklama: Temayı uygula (light/dark)
+      if (theme === 'light') {
+        root.classList.add('light');
+        themeToggleBtn.textContent = '☀️';
+      } else {
+        root.classList.remove('light');
+        themeToggleBtn.textContent = '🌙';
+      }
+      localStorage.setItem('site-theme', theme);
+    }
+
+    function initTheme() {
+      // Türkçe Açıklama: Kullanıcı tercihini oku; yoksa sistem temasını baz al
+      const stored = localStorage.getItem('site-theme');
+      if (stored) {
+        applyTheme(stored);
+      } else {
+        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        applyTheme(prefersLight ? 'light' : 'dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      // Türkçe Açıklama: Tema arasında geçiş yap
+      const isLight = root.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+
+    // =====================
+    // Türkçe Açıklama: Mobil menü
+    // =====================
+    const menuToggleBtn = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    function closeMobilePanel() { mobilePanel.classList.remove('open'); }
+
+    menuToggleBtn.addEventListener('click', () => {
+      // Türkçe Açıklama: Mobil menüyü aç/kapat
+      mobilePanel.classList.toggle('open');
+    });
+
+    mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobilePanel));
+
+    // =====================
+    // Türkçe Açıklama: Yumuşak kaydırma ve aktif link vurgusu
+    // =====================
+    const navLinks = document.querySelectorAll('.nav-links a, #mobilePanel a');
+
+    function smoothScroll(e) {
+      // Türkçe Açıklama: Dahili bağlantılarda yumuşak kaydırma
+      if (this.hash) {
+        e.preventDefault();
+        const target = document.querySelector(this.hash);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    navLinks.forEach(link => link.addEventListener('click', smoothScroll));
+
+    function updateActiveLink() {
+      // Türkçe Açıklama: Ekranda görünen bölüme göre aktif menü linki
+      const sections = ['about', 'content', 'instructor', 'requirements']
+        .map(id => document.getElementById(id));
+      let current = sections[0].id;
+      const offset = 120; // Türkçe Açıklama: Üst menü yüksekliği payı
+      sections.forEach(sec => {
+        if (window.scrollY + offset >= sec.offsetTop) current = sec.id;
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    document.addEventListener('scroll', updateActiveLink, { passive: true });
+
+    // =====================
+    // Türkçe Açıklama: Müfredat arama filtresi
+    // =====================
+    const searchInput = document.getElementById('searchCurriculum');
+    const accordions = Array.from(document.querySelectorAll('#content details'));
+
+    function filterCurriculum(query) {
+      // Türkçe Açıklama: Arama metnine göre modülleri filtrele
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        accordions.forEach(d => { d.style.display = ''; d.open = false; });
+        return;
+      }
+      accordions.forEach(d => {
+        const text = d.textContent.toLowerCase();
+        const match = text.includes(q);
+        d.style.display = match ? '' : 'none';
+        d.open = match; // Türkçe Açıklama: Eşleşen modülü otomatik aç
+      });
+    }
+
+    searchInput.addEventListener('input', e => filterCurriculum(e.target.value));
+
+    // Türkçe Açıklama: / tuşu ile arama alanına odaklanma (GitHub benzeri)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+
+    // =====================
+    // Türkçe Açıklama: Yıl bilgisi ve başlangıç
+    // =====================
+    document.getElementById('year').textContent = new Date().getFullYear();
+    initTheme();
+    updateActiveLink();
+  </script>
+</body>
+</html>
